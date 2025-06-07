@@ -1,0 +1,12 @@
+# Maven build output
+target/
+
+# IDE files (optional)
+*.iml
+.idea/
+.vscode/
+
+# Logs
+*.log
+
+# Others you want to ignore

@@ -1,0 +1,51 @@
+
+# ***Building Docker Images***
+
+In this section, we explain how to build a Docker image for the microservice.
+
+---
+
+## 1. ***Using a Dockerfile***
+
+- A **Dockerfile** should be created in the **root directory** where the `pom.xml` file is located.
+- Ensure the **packaging** type in `pom.xml` is set to **jar**:
+
+```xml
+<packaging>jar</packaging>
+```
+
+---
+
+## 2. ***Package the Application Using Maven***
+
+Use the following command to generate the JAR:
+
+```bash
+mvn clean package
+```
+
+---
+
+## 3. ***Build the Docker Image***
+
+Run the following command to build the Docker image:
+
+```bash
+docker build -t vigneshramnalla/accounts:s2 .
+```
+
+---
+
+## 🔧 Helper Commands
+
+- **List all Docker images:**
+  ```bash
+  docker images
+  ```
+
+- **Inspect a Docker image by image ID:**
+  ```bash
+  docker inspect <image-id>
+  ```
+
+---
