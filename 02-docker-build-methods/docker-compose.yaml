@@ -1,0 +1,47 @@
+services:
+  accounts:
+    image: "vigneshramnalla/accounts:jib"
+    container_name: "accounts"
+    ports:
+      - "8080:8080"
+      # restricting out container resource limits
+    deploy:
+      resources:
+        limits:
+          memory: 700m
+    networks:
+      - vigneshbank
+  loans:
+    image: "vigneshramnalla/loans:jib"
+    container_name: "loans"
+    ports:
+      - "8090:8090"
+      # restricting out container resource limits
+    deploy:
+      resources:
+        limits:
+          memory: 700m
+    networks:
+      - vigneshbank
+
+  cards:
+    image: "vigneshramnalla/cards:jib"
+    container_name: "cards"
+    ports:
+      - "9000:9000"
+      # restricting out container resource limits
+    deploy:
+      resources:
+        limits:
+          memory: 700m
+    networks:
+      - vigneshbank
+
+
+
+# we are informing to docker server that create a network vigneshbank with driver bridge
+networks:
+  vigneshbank:
+    driver: "bridge"
+
+      
