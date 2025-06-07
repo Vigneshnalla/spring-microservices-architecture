@@ -1,0 +1,23 @@
+# IntelliJ IDEA files
+/shelf/
+/workspace.xml
+
+# Ignore JAR files
+*.jar
+
+# Maven and Gradle build directories
+/target/
+/build/
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Environment files
+.env
+
+# Node modules (if any frontend is involved)
+node_modules/
