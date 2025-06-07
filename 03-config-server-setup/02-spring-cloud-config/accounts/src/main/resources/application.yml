@@ -1,6 +1,10 @@
 server:
   port: 8080
 spring:
+  application:
+    name: "account"  # Application name used by Spring Cloud Config Server to fetch related properties
+  profiles:
+    active: "prod"
   datasource:
     url: jdbc:h2:mem:testdb
     driverClassName: org.h2.Driver
@@ -14,21 +18,6 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
-#  config:
-#    import:
-#      - "application-qa.yml"
-#      - "application-prod.yml"
-  profiles:
-    active: qa
 
-build:
-  version: "3.0"
-
-accounts:
-  message: "Welcome to VigneshBank accounts related local APIs "
-  contactDetails:
-    name: "Vignesh Nalla - Developer"
-    email: "vignesh@VigneshBank.com"
-  onCallSupport:
-    - (555) 555-1234
-    - (555) 523-1345
+  config:
+    import: "configserver:http://localhost:8071/"  #config server url for fetching the config
