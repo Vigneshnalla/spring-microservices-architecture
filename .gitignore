@@ -10,3 +10,11 @@ target/
 *.log
 
 # Others you want to ignore
+# Ignore built JARs and WARs (usually inside target/)
+*.jar
+*.war
+
+# Ignore Docker image files (if any saved locally as tar or similar)
+*.tar
+*.tar.gz
+*.tgz

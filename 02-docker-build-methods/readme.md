@@ -36,6 +36,34 @@ docker build -t vigneshramnalla/accounts:s2 .
 
 ---
 
+## 4. ***Using Buildpacks***
+
+# Build Docker Image Using Spring Boot Maven Plugin
+
+Ensure the **packaging** type in `pom.xml` is set to **jar**:
+
+```xml
+<packaging>jar</packaging>
+```
+
+Ensure the Spring Boot Maven Plugin includes the image configuration. Inside the `<configuration>` tag, add the image name you want:
+
+```xml
+<configuration>
+  <image>
+    <name>vignesh/${project.artifactId}:s3</name>
+  </image>
+</configuration>
+```
+
+Run the following command to build the Docker image:
+
+```bash
+mvn spring-boot:build-image
+```
+
+---
+
 ## 🔧 Helper Commands
 
 - **List all Docker images:**
