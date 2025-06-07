@@ -62,6 +62,17 @@ Run the following command to build the Docker image:
 mvn spring-boot:build-image
 ```
 
+
+---
+
+## 3. ***Using Goolge Jib***
+
+Ensure the **packaging** type in `pom.xml` is set to **jar**:
+
+```xml
+<packaging>jar</packaging>
+```
+
 Ensure the Spring Boot  includes the jib-maven-plugin and the image configuration. Inside the `<configuration>` tag, add the image name you want:
 
 ```xml
@@ -80,16 +91,6 @@ Run the following command to build the Docker image:
 
 ```bash
 mvn compile jib:dockerBuild
-```
-
----
-
-## 3. ***Using Goolge Jib***
-
-Ensure the **packaging** type in `pom.xml` is set to **jar**:
-
-```xml
-<packaging>jar</packaging>
 ```
 
 
