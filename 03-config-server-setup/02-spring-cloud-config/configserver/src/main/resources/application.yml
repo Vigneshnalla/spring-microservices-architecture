@@ -3,12 +3,21 @@ spring:
     name: "configserver"
 
   profiles:
-    active: native
+    active: git
+#    active: native
 
   cloud:
     config:
       server:
-        native:
-          search-locations: "classpath:/config"
+        git:
+          uri: "https://github.com/Vigneshnalla/microservices-config.git"
+          default-label: main   # add you branch where files was located
+          timeout: 5  # if it is not able to connect with git hub upto timeout time it fail immediately
+          clone-on-start: true  # copy files from git to local system
+          force-pull: true   # whenever you restart always it override the files in local system
+
+
+#        native:
+#          search-locations: "classpath:/config"
 server:
   port: 8071

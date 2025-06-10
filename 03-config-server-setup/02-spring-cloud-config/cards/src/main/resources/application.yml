@@ -2,7 +2,7 @@ server:
   port: 9000
 spring:
   application:
-    name: "cards"
+    name: "accounts"
   profiles:
     active: qa
   datasource:
@@ -21,3 +21,14 @@ spring:
 
   config:
     import: "configserver:http://localhost:8071/"  #config server url for fetching the config
+  rabbitmq:
+    host: "localhost"
+    port: 5672
+    username: "guest"
+    password: "guest"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
