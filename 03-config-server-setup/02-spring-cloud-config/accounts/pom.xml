@@ -27,7 +27,7 @@
         <url/>
     </scm>
     <properties>
-        <java.version>17</java.version>
+        <java.version>21</java.version>
         <spring-cloud.version>2024.0.0</spring-cloud.version>
     </properties>
     <dependencies>
@@ -102,8 +102,11 @@
                 <artifactId>jib-maven-plugin</artifactId>
                 <version>3.4.1</version>
                 <configuration>
+                    <from>
+                        <image>eclipse-temurin:21-jre</image> <!-- Use Java 21 base image -->
+                    </from>
                     <to>
-                        <image>vigneshramnalla/${project.artifactId}:jib</image> <!-- Change as needed -->
+                        <image>vigneshramnalla/${project.artifactId}:s6</image> <!-- Change as needed -->
                     </to>
                 </configuration>
             </plugin>

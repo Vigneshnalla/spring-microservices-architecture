@@ -20,9 +20,9 @@ spring:
     show-sql: true
 
   config:
-    import: "configserver:http://localhost:8071/"  #config server url for fetching the config
+    import: "configserver:http://configserver:8071/" #config server url for fetching the config
   rabbitmq:
-    host: "localhost"
+    host: "rabbit"
     port: 5672
     username: "guest"
     password: "guest"
