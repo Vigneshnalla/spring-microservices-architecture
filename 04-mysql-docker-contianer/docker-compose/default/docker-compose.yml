@@ -15,6 +15,7 @@ services:
       start_period: 20s
     networks:
       - vigneshbank
+
   loansdb:
     image: mysql:latest
     container_name: loansdb
@@ -54,16 +55,16 @@ services:
     container_name: "configserver-ms"
     ports:
       - "8071:8071"
+    environment:
+      SPRING_CLOUD_CONFIG_SERVER_GIT_URI: https://github.com/Vigneshnalla/microservices-config.git
+      SPRING_CLOUD_CONFIG_SERVER_GIT_DEFAULT_LABEL: main
+      SPRING_PROFILES_ACTIVE: git
     healthcheck:
       test: ["CMD", "curl", "-f", "http://localhost:8071/actuator/health"]
       interval: 10s
       timeout: 5s
       retries: 5
       start_period: 15s
-    environment:
-      SPRING_RABBITMQ_HOST: rabbit
-      SPRING_RABBITMQ_PORT: 5672
-      service: microservice-base-config
     networks:
       - vigneshbank
 
@@ -76,21 +77,20 @@ services:
       resources:
         limits:
           memory: 700m
-    
     environment:
       SPRING_APPLICATION_NAME: "accounts"
-      SPRING_PROFILES_ACTIVE: "docker"
-      SPRING_CONFIG_IMPORT: "configserver:http://configserver:8071/"
-      SPRING_DATASOURCE_URL: "jdbc:mysql://accountsdb:3309/accountsdb"
+      SPRING_PROFILES_ACTIVE: "default"
+      SPRING_CONFIG_IMPORT: 'configserver:http://configserver:8071/'
+
+      SPRING_DATASOURCE_URL: "jdbc:mysql://accountsdb:3306/accountsdb"
       SPRING_DATASOURCE_USERNAME: "root"
       SPRING_DATASOURCE_PASSWORD: "root"
-
+      SPRING_CLOUD_CONFIG_FAIL_FAST: "false"
     depends_on:
       accountsdb:
         condition: service_healthy
       configserver:
         condition: service_healthy
-
     networks:
       - vigneshbank
 
@@ -105,19 +105,17 @@ services:
           memory: 700m
     environment:
       SPRING_APPLICATION_NAME: "loans"
-      SPRING_PROFILES_ACTIVE: "docker"
+      SPRING_PROFILES_ACTIVE: "default"
       SPRING_CONFIG_IMPORT: "configserver:http://configserver:8071/"
-      SPRING_DATASOURCE_URL: "jdbc:mysql://accountsdb:3307/loanssdb"
+      SPRING_DATASOURCE_URL: "jdbc:mysql://loansdb:3306/loansdb"
       SPRING_DATASOURCE_USERNAME: "root"
       SPRING_DATASOURCE_PASSWORD: "root"
-
+      SPRING_CLOUD_CONFIG_FAIL_FAST: "false"
     depends_on:
-      accountsdb:
+      loansdb:
         condition: service_healthy
       configserver:
         condition: service_healthy
-
-
     networks:
       - vigneshbank
 
@@ -132,22 +130,20 @@ services:
           memory: 700m
     environment:
       SPRING_APPLICATION_NAME: "cards"
-      SPRING_PROFILES_ACTIVE: "docker"
+      SPRING_PROFILES_ACTIVE: "default"
       SPRING_CONFIG_IMPORT: "configserver:http://configserver:8071/"
-      SPRING_DATASOURCE_URL: "jdbc:mysql://accountsdb:3308/cardssdb"
+      SPRING_DATASOURCE_URL: "jdbc:mysql://cardsdb:3306/cardsdb"
       SPRING_DATASOURCE_USERNAME: "root"
       SPRING_DATASOURCE_PASSWORD: "root"
-
+      SPRING_CLOUD_CONFIG_FAIL_FAST: "false"
     depends_on:
-      accountsdb:
+      cardsdb:
         condition: service_healthy
       configserver:
         condition: service_healthy
-
     networks:
       - vigneshbank
 
-# Network definition
 networks:
   vigneshbank:
     driver: "bridge"

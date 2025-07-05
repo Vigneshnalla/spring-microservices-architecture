@@ -4,7 +4,7 @@ spring:
   application:
     name: "accounts"
   datasource:
-    url: jdbc:mysql://localhost:3309/accountsdb
+    url: jdbc:mysql://localhost:4000/accountsdb
     driverClassName: com.mysql.cj.jdbc.Driver
     username: root
     password: root
@@ -15,8 +15,8 @@ spring:
       mode: always
   profiles:
     active: prod
-  config:
-    import: "configserver:http://localhost:8071/" #config server url for fetching the config
+  # config:
+  # import: "configserver:http://localhost:8071/" #config server url for fetching the config
 
 management:
   endpoints:
